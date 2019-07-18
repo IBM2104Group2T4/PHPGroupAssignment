@@ -75,7 +75,7 @@ INSERT INTO `review` (`id`, `collegeID`, `username`, `rating`, `comment`, `date1
 (2, 3, 'Chiah Kah Hin', 4, 'Hello', '2019-07-18'),
 (3, 1, 'Chiah Kah Hin', 5, 'Not bad', '2019-07-18'),
 (4, 5, 'Chiah Kah Hin', 5, 'Not bad', '2019-07-18'),
-(5, 3, 'Teng Wei Kang', 4, 'Not bad 1', '0000-00-00'),
+(5, 3, 'Teng Wei Kang', 4, 'Not bad 1', '2019-07-18'),
 (6, 4, 'Teng Wei Kang', 2, 'Not bad', '2019-07-18');
 
 -- --------------------------------------------------------
@@ -102,8 +102,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `username`, `password`, `email`, `gender`, `state`, `status`, `date`, `phoneNo`, `admin`) VALUES
-(1, 'admin', '25d55ad283aa400af464c76d713c07ad', 'kahhinchiah1@gmail.com', 'M', 'Kedah', 1, '2019-06-11', '123', 1),
-(2, 'Chiah Kah Hin', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin1@hotmail.com', 'M', 'Kedah', 1, '2019-06-20', '123', 0),
+(1, 'admin', '25d55ad283aa400af464c76d713c07ad', 'kahhinchiah1@gmail.com', 'M', 'Kedah', 1, '2019-06-11', '012-3456789', 1),
+(2, 'Chiah Kah Hin', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin1@hotmail.com', 'M', 'Kedah', 1, '2019-06-20', '012-3456789', 0),
 (5, 'Teng Wei Kang', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin2@hotmail.com', 'M', 'Kedah', 1, '2019-07-18', '012-3456789', 0),
 (6, 'Ho Haw Liang', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin@hotmail.com', 'M', 'Kedah', 0, '2019-07-18', '012-3456789', 0);
 
