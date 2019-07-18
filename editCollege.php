@@ -110,40 +110,34 @@
 			$imageSplit = explode('.', $imageName);
 			$imageExt = strtolower(end($imageSplit));
 			$extArray = array('jpg', 'jpeg', 'png');
-			if ($imageError !== 4)
-			{
-				if (in_array($imageExt, $extArray))
-				{
-					if ($imageError === 0)
-					{
-						if ($imageSize <= 2000000)
-						{
+			if ($imageError !== 4){
+				if (in_array($imageExt, $extArray)){
+					if ($imageSize <= 2000000){
+						if ($imageError === 0){
 							$imageNewName = uniqid("", true).".".$imageExt;
 							$imageNewPath = "College_Image/".$imageNewName;
 							move_uploaded_file($imageTmpName, $imageNewPath);
 						
-							if ($check)
-							{
+							if ($check){
 								$sql2 = "UPDATE college SET name = '$name',picture = '$imageNewName',description = '$description',course = '$courseAvailable', state = '$state',address = '$address', contactNumber = '$contactNumber',officeHours = '$officeHours' WHERE id ='$id'";
 								$query = $conn->prepare($sql2);
 								$query->execute();
 								echo "<script type='text/javascript'> alert('Successfully edited'); </script>";
-
 							}
 						}
+						else{
+							$message2 = "Something error when upload the image";
+						}
 					}
-					else
-					{
-						$message2 = "Something error when upload the image";
+					else{
+						$message2 = "The image size is too big";
 					}
 				}
-				else
-				{
+				else{
 					$message2 = "This is not an image file";
 				}
 			}
-			else
-			{
+			else{
 				if($check){
 					$sql2 = "UPDATE college SET name = '$name',description = '$description',course = '$courseAvailable', state = '$state',address = '$address', contactNumber = '$contactNumber',officeHours = '$officeHours' WHERE id ='$id'";
 					$query = $conn->prepare($sql2);
