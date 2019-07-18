@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2019 at 04:15 AM
+-- Generation Time: Jul 18, 2019 at 04:29 AM
 -- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,25 +71,12 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `collegeID`, `username`, `rating`, `comment`, `date1`) VALUES
-(1, 0, '', 3, 'eeee', '0000-00-00'),
-(2, 0, '', 4, 'eeee', '0000-00-00'),
-(3, 0, '', 4, 'eeee', '2019-07-14'),
-(4, 0, '', 3, 'eeeee', '2019-07-14'),
-(5, 0, '', 1, 'this is a bad college\r\n', '2019-07-14'),
-(6, 0, '', 3, 'eeee', '2019-07-14'),
-(7, 0, '', 3, 'eeee', '2019-07-14'),
-(8, 0, '', 3, 'eeee', '2019-07-14'),
-(9, 0, '', 3, 'eeee', '2019-07-14'),
-(10, 0, '', 3, 'eeee', '2019-07-14'),
-(11, 0, '', 3, 'eeee', '2019-07-14'),
-(12, 0, '', 3, 'eeee', '2019-07-14'),
-(13, 0, '', 3, 'this suckssssss', '2019-07-15'),
-(14, 2, 'admin', 4, 'halo i am fine!\r\n', '2019-07-16'),
-(15, 2, 'admin', 4, 'halo i am fine!\r\n', '2019-07-16'),
-(16, 2, 'admin', 4, 'halo i am fine!\r\n', '2019-07-16'),
-(17, 2, 'admin', 4, 'halo i am fine!\r\n', '2019-07-16'),
-(18, 3, 'admin', 3, 'eeee', '2019-07-16'),
-(19, 1, 'admin', 1, 'hi hi hi', '2019-07-16');
+(1, 2, 'Chiah Kah Hin', 3, 'Hello', '2019-07-18'),
+(2, 3, 'Chiah Kah Hin', 4, 'Hello', '2019-07-18'),
+(3, 1, 'Chiah Kah Hin', 5, 'Not bad', '2019-07-18'),
+(4, 5, 'Chiah Kah Hin', 5, 'Not bad', '2019-07-18'),
+(5, 3, 'Teng Wei Kang', 4, 'Not bad 1', '0000-00-00'),
+(6, 4, 'Teng Wei Kang', 2, 'Not bad', '2019-07-18');
 
 -- --------------------------------------------------------
 
@@ -115,8 +102,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `username`, `password`, `email`, `gender`, `state`, `status`, `date`, `phoneNo`, `admin`) VALUES
-(1, 'admin', '25d55ad283aa400af464c76d713c07ad', 'kahhinchiah@gmail.com', 'M', 'Kedah', 1, '2019-06-11', '123', 1),
-(2, '1', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin@hotmail.com', 'M', 'Kedah', 0, '2019-06-20', '123', 0);
+(1, 'admin', '25d55ad283aa400af464c76d713c07ad', 'kahhinchiah1@gmail.com', 'M', 'Kedah', 1, '2019-06-11', '123', 1),
+(2, 'Chiah Kah Hin', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin1@hotmail.com', 'M', 'Kedah', 1, '2019-06-20', '123', 0),
+(5, 'Teng Wei Kang', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin2@hotmail.com', 'M', 'Kedah', 1, '2019-07-18', '012-3456789', 0),
+(6, 'Ho Haw Liang', '25d55ad283aa400af464c76d713c07ad', 'chiahkahhin@hotmail.com', 'M', 'Kedah', 0, '2019-07-18', '012-3456789', 0);
 
 --
 -- Indexes for dumped tables
@@ -154,13 +143,13 @@ ALTER TABLE `college`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
