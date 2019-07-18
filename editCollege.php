@@ -44,7 +44,6 @@
 				$sql = "SELECT * FROM college WHERE name='$name' AND id<>$id";
 				$result = $conn -> prepare($sql);
 				$result -> execute();
-				echo $result -> rowCount();
 				if ($result -> rowCount() > 0)
 				{
 					$message1 = "College name has repeated";
@@ -213,7 +212,7 @@
 	<br><span id="invalidDescription"><?php echo $message3;?></span><br><br>
 
 	<div class="login-input-container">
-		<input type="text" name="courseAvailable" value=<?php echo htmlentities($courseAvailable);?> required/>
+		<input type="text" name="courseAvailable" value="<?php echo($courseAvailable);?>" required/>
         <label for="courseAvailable" class="login-form-label"><span class="login-form-label-span">Course Available:</span> </label>
     </div><br>
 	<span id="invalidCourse"><?php echo $message4;?></span>
