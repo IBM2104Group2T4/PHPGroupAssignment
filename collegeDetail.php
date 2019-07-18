@@ -2,7 +2,7 @@
 	include "includes/initialize.php";
 	include "header.php";
     include "includes/config.php";
-	error_reporting(0);
+	error_reporting(0);	
    
 ?>
 
@@ -38,6 +38,7 @@
             
              <div class="detail-image"> 
              <img src="College_Image/<?php echo $collegePicture ?>" width="300" height="200">
+                 <a id="button" href="pdf.php?id=<?php echo $collegeId;?>" style="margin-left: 140px;text-align:center;margin-top: 80px;padding-top:12px;">Get your pdf file here!</a>
              </div>
              
              <div class="detail-content">
@@ -61,7 +62,7 @@
              <br>
              <br>
                  
-                <span>College Office Hour: <br><b><?php echo $collegeOfficeHours ?></b></span> 
+                <span>College Office Hour: <br><b><?php echo $collegeOfficeHours ?></b></span>
              <br>
              <br>
                  
@@ -81,6 +82,33 @@
     
     $rateErr = "";
     $commentErr = "";
+    
+    if(isset($_POST['editComment'])){
+        if(empty($_POST['comments'])){
+            $commentErr = "Please comment this college";
+        }else{
+            $comment = $_POST['comments'];
+			$rate = $_POST['rate'];
+        }
+         
+     
+        if(!empty($_POST['comments'])){
+            
+            $date = date("Y/m/d");
+            
+            $sql1 = "UPDATE review SET rating = '$rate', comment = '$comment', date1='$date' WHERE collegeID ='$_GET[detail]' AND username='$_SESSION[username]'";
+            
+            
+            $stmt = $conn->prepare($sql1);
+            $stmt->execute([$comment, $date]);
+            echo "<script>alert('edit comment successfully!')</script>";
+            
+            
+        }
+        
+        
+        
+    }
     
 
     if(isset($_POST['commentSubmitted'])){
@@ -147,6 +175,35 @@
    
     ?>
     
+    
+     <?php
+      $editComment = "commentSubmitted";   
+              $editValue = "RATE";
+             if($isLogin == True){
+            
+                    $sql4 = "SELECT * from review WHERE collegeID='$_GET[detail]' AND username='$_SESSION[username]'";
+		              $query4 = $conn -> prepare($sql4);
+		              $query4->execute();
+		              $results4=$query4->fetchAll(PDO::FETCH_OBJ);
+			             if($query4->rowCount() > 0){
+                            foreach($results4 as $c){
+                                $commentDetail1 = htmlentities($c -> comment);
+                                
+                            }
+                             $editComment = "editComment";
+                             $editValue = "Edit Comment";
+                }else{
+                             $commentDetail1 = "";
+                         }
+                    
+             }else{
+                    $commentDetail1 = "";
+             }
+                
+                ?>
+                
+    
+    
     <div class="comment-section">
         <h3><u>Rating Section</u></h3>
         <form action="collegeDetail.php?detail=<?php echo $collegeId; ?>" method="post">
@@ -168,43 +225,23 @@
                  <span><?php echo $rateErr; ?></span>
             </div>
             <div class="comment-area">
-            <textarea name="comments" cols="50" rows="5" placeholder="Please comment here...."></textarea>
+            <textarea name="comments" cols="50" rows="5" placeholder="Please comment here...."><?php echo $commentDetail1;?></textarea>
                 <span id="error-message1"><?php echo $commentErr; ?></span>
                 <br>
-                <!--<input type="submit" name="editComment" value="Edit your comment" style="margin-top:15px;">-->
+
                 
-                <!--<?php
-                    
-                if(isset($_POST["editComment"])){
-                    
-                    $sql4 = "SELECT * from review WHERE collegeID='$_GET[detail]' AND username='$_SESSION[username]'";
-		              $query4 = $conn -> prepare($sql4);
-		              $query4->execute();
-		              $results4=$query4->fetchAll(PDO::FETCH_OBJ);
-			             if($query4->rowCount() > 0){
-                            foreach($result as $c){
-                                $commentDetail1 = $c -> htmlentities($a -> comment);
-                                
-                                echo '<textarea>'.$commentDetail.'</textarea>';
-                                    
-                            }
-                }
-                    
-                }
-                
-                ?>
-                -->
+              
             </div>
             </div>
             
             
             
             <div class="rating-submit-button">
-                <input id="button" type="submit" name="commentSubmitted" value="RATE!" style="margin-left:0;">   
+                <input id="button" type="submit" name="<?php echo $editComment;?>" value="<?php echo $editValue;?>" style="margin-left:0;">   
                 
             </div>
         </form>
-        </div>
+    </div>
     <br>
         
         <div>
