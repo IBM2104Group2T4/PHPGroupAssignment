@@ -169,7 +169,7 @@
 		
 		$addressArr=  explode('<br />',$address);
 		$addressArr1 = explode(', ', $addressArr[0], 2);
-		$addressArr2 = explode(', ', $addressArr[1]);
+		$addressArr2 = explode(', ', $addressArr[1], 2);
 		
 		$officeHoursArr = explode(' - ', $officeHours);
 		
