@@ -119,16 +119,17 @@
 						if ($imageSize <= 2000000)
 						{
 							$imageNewName = uniqid("", true).".".$imageExt;
-							$imageNewPath = "image/".$imageNewName;
+							$imageNewPath = "College_Image/".$imageNewName;
 							move_uploaded_file($imageTmpName, $imageNewPath);
-						}
-						else if ($check)
-						{
-							$sql2 = "UPDATE college SET name = '$name',picture = '$imageNewName',description = '$description',course = '$courseAvailable', state = '$state',address = '$address', contactNumber = '$contactNumber',officeHours = '$officeHours' WHERE id ='$id'";
-							$query = $conn->prepare($sql2);
-							$query->execute();
-							echo "<script type='text/javascript'> alert('Successfully edited'); </script>";
+						
+							if ($check)
+							{
+								$sql2 = "UPDATE college SET name = '$name',picture = '$imageNewName',description = '$description',course = '$courseAvailable', state = '$state',address = '$address', contactNumber = '$contactNumber',officeHours = '$officeHours' WHERE id ='$id'";
+								$query = $conn->prepare($sql2);
+								$query->execute();
+								echo "<script type='text/javascript'> alert('Successfully edited'); </script>";
 
+							}
 						}
 					}
 					else
@@ -201,7 +202,7 @@
 	<br> 
 	<br>
 	<b>Picture: (Leave it if do not want to change the picture)</b><br>
-	<input type="file" name="picturePath" value="<?php echo htmlentities($productPicture);?>"/><br><br>
+	<input type="file" name="picturePath"/><br><br>
 	<span id="invalidFile"><?php echo $message2;?></span>
 	<br><br>
 	
