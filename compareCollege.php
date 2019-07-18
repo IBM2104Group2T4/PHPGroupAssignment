@@ -8,54 +8,59 @@
 		$college2 = $_POST['college2'];
 		$check=false;
 		$check1=false;
+		$empty=true;
 		
 		if (empty($college1) && empty($college2)){
 			$message = "Please enter two college<br>";
+			$empty=false;
 		}
 		if(empty($college1)){
-			$message = "Please enter two college<br>";
+			$message = "Please enter first college<br>";
+			$empty=false;
 		}
-		
-		if (empty($college2)){
-			$message = "Please enter two college<br>";
+		if(empty($college2)){
+			$message = "Please enter second college<br>";
+			$empty=false;
 		}
-		if ($college1 != $college2){
-			$sql3 = "SELECT * from college";
-			$query3 = $conn -> prepare($sql3);
-			$query3->execute();
-			$results3=$query3->fetchAll(PDO::FETCH_OBJ);
-				if($query3->rowCount() > 0){
-					foreach($results3 as $result3){
-						if ($result3->name==$college1){
-							$check=true;
+		if($empty){
+			if ($college1 != $college2){
+				$sql3 = "SELECT * from college";
+				$query3 = $conn -> prepare($sql3);
+				$query3->execute();
+				$results3=$query3->fetchAll(PDO::FETCH_OBJ);
+					if($query3->rowCount() > 0){
+						foreach($results3 as $result3){
+							if ($result3->name==$college1){
+								$check=true;
+							}
 						}
 					}
-				}
-			$sql4 = "SELECT * from college";
-			$query4 = $conn -> prepare($sql4);
-			$query4->execute();
-			$results4=$query4->fetchAll(PDO::FETCH_OBJ);
-				if($query4->rowCount() > 0){
-					foreach($results4 as $result4){
-						if ($result4->name==$college2){
-							$check1=true;
+				$sql4 = "SELECT * from college";
+				$query4 = $conn -> prepare($sql4);
+				$query4->execute();
+				$results4=$query4->fetchAll(PDO::FETCH_OBJ);
+					if($query4->rowCount() > 0){
+						foreach($results4 as $result4){
+							if ($result4->name==$college2){
+								$check1=true;
+							}
 						}
 					}
-				}
-			if (!$check && !$check1){
-				$message = "Both college not found in our database";
-			} 
-			else {
-				if(!$check){
-					$message .= "First college not found in our database<br>";
-				}
-				if(!$check1){
-					$message .= "Second college not found in our database";
+				if (!$check && !$check1){
+					$message = "Both college not found in our database";
+				} 
+				else {
+					if(!$check){
+						$message .= "First college not found in our database<br>";
+					}
+					if(!$check1){
+						$message .= "Second college not found in our database";
+					}
 				}
 			}
-		}
-		else{
-			$message = "Please do not select the same college.";
+			else{
+				$message = "Please do not select the same college.";
+			}
 		}
 	}
 ?>
